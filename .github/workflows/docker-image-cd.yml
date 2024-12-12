@@ -15,15 +15,14 @@ jobs:
 
     - name: Set up Kubernetes
       run: |
+        docker system prune -a -f
         minikube start
         minikube update-context
 
     - name: Delete previous deployments
       run: |
-        minikube kubectl -- delete deployment flask-service-node
-        minikube kubectl -- delete services flask-service-node
-        minikube kubectl -- delete deployment flask-service-balanced
-        minikube kubectl -- delete services flask-service-balanced
+        minikube kubectl -- delete deployment --all
+        minikube kubectl -- delete services --all
         minikube kubectl -- delete pods --all
 
     - name: Deploy to NodePort
