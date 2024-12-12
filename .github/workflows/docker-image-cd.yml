@@ -18,6 +18,14 @@ jobs:
         minikube start
         minikube update-context
 
+    - name: Delete previous deployments
+      run: |
+        minikube kubectl -- delete deployment flask-service-node
+        minikube kubectl -- delete services flask-service-node
+        minikube kubectl -- delete deployment flask-service-balanced
+        minikube kubectl -- delete services flask-service-balanced
+        minikube kubectl -- delete pods --all
+
     - name: Deploy to NodePort
       run: |
         minikube kubectl -- create deployment flask-service-node --image=kicbase/echo-server:1.0
