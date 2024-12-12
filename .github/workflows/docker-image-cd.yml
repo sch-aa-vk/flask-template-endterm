@@ -28,6 +28,6 @@ jobs:
 
     - name: Deploy to LoadBalancer
       run: |
-        kubectl create deployment flask-service-balanced --image=kicbase/echo-server:1.0
-        kubectl expose deployment flask-service-balanced --type=LoadBalancer --port=8080
+        minikube kubectl -- create deployment flask-service-balanced --image=kicbase/echo-server:1.0
+        minikube kubectl -- expose deployment flask-service-balanced --type=LoadBalancer --port=8080
 
