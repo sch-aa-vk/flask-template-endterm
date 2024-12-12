@@ -22,4 +22,4 @@ jobs:
       run: sudo docker rm -f flask-template-endterm-container || true
 
     - name: Run Docker container
-      run: sudo docker run -d -p 8080:5000 --name flask-template-endterm-container schaavk/flask-template-endterm
+      run: sudo docker run -d -p 31230:5000 --name flask-template-endterm-container schaavk/flask-template-endterm
