@@ -1,10 +1,9 @@
 name: Docker Image CD
 
 on:
-  workflow_run:
-    workflows: ["Docker Image CI Action"]
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
 
@@ -14,15 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
-    - name: Pull Docker image from Dockerhub
-      run: sudo docker pull schaavk/flask-template-endterm:latest
-      
-    - name: Delete old Docker container
-      run: sudo docker rm -f flask-template-endterm-container || true
-
-    - name: Run Docker container
-      run: sudo docker run -d -p 31230:5000 --name flask-template-endterm-container schaavk/flask-template-endterm
 
     - name: Set up Kubernetes
       run: |
