@@ -31,8 +31,8 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f deployment.yaml
-        kubectl apply -f service.yaml
+        minikube kubectl -- apply -f deployment.yaml
+        minikube kubectl -- apply -f service.yaml
   
     - name: Check deployment
-      run: kubectl get all
+      run: minikube kubectl -- get all
